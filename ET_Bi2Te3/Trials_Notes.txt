@@ -1,0 +1,154 @@
+--------------------------------------------------------------
+Trial1
+--------------------------------------------------------------
+P = 3, 5, 7, 9, 10, 12, 15, 17, 20, 25, 30, 35
+v = 0.15, 0.2, 0.3, 0.35, 0.5, 0.65 
+A = 0.4
+Powder bed effective properties
+Porosity = 0.4
+450 points 
+4 K tolerance
+6 hours 37 minutes
+Data saved
+
+--------------------------------------------------------------
+Trial2
+--------------------------------------------------------------
+P = 3, 5, 7, 9, 10, 12, 15, 17, 20, 25, 30, 35
+v = 0.15, 0.2, 0.3, 0.35, 0.5, 0.65 
+A =0.4
+Solid material properties
+450 points 
+4 K tolerance
+Data saved
+
+When using the solid bulk material properties, the melt depths are smaller compared to when using the effective powder bed properties. The decrease in depth becomes smaller at higher powers and lower speeds. Smallest percentage decrease is 6% and it occurs for maximum power and minimum speed value.
+
+Using the solid bulk material properties leads to an average 45% decrease in the maximum temperature values 
+This average decrease percentage is expected to be smaller for lower porosity values used for calculation of the effective properties
+--------------------------------------------------------------
+Trial3
+--------------------------------------------------------------
+P = 3, 5, 7, 9, 10, 12, 15, 17, 20, 25, 30, 35
+v = 0.15, 0.2, 0.3, 0.35, 0.5, 0.65 
+A = 0.3
+Powder bed effective properties
+Porosity = 0.4
+450 points 
+4 K tolerance
+8 hours 24 minutes
+Data saved
+
+The maximum field temperature is directly proportional to the absorptivity value used. A 25% decrease in the absorptivity value, from A=0.4 to A=0.3, leads to a 25% decrease in Tmax, except for low powers and high speeds, where the decrease is 23%.
+
+For this lower absorptivity value, the percent decrease in depth is lower than 20%, with lower decrease percentages occuring at combinations of high power and lower speeds
+--------------------------------------------------------------
+Trial4
+--------------------------------------------------------------
+P = 3, 5, 7, 9, 10, 12, 15, 17, 20, 25, 30, 35
+v = 0.15, 0.2, 0.3, 0.35, 0.5, 0.65 
+A = 0.3
+Solid material properties
+450 points 
+4 K tolerance
+8 hours 49 minutes
+Data saved
+
+Using the solid bulk material properties leads to an average 45% decrease in the maximum temperature values compared to Trial3.
+Compared to max temperatures from Trial1, the percentage decrease in temperature approaches 60% value.
+
+The decrease in melt depths is greater when switching both to a lower absorptivity value and to solid material properties.
+-------------------------------
+Trial5
+--------------------------------
+--------------------------------------------------------------
+P = 3, 5, 7, 9, 10, 12, 15, 17, 20, 25, 30, 35
+v = 0.15, 0.2, 0.3, 0.35, 0.5, 0.65 
+A = 0.4
+Powder bed effective properties
+Porosity = 0.3
+450 points 
+4 K tolerance
+6 hours 41 minutes
+Data saved
+
+-------------------------
+Trial6
+------------------------
+Initial HZ parameters from process maps
+
+P = 10,15,20,25
+v = 0.2, 0.35, 0.5 
+A=0.4
+Powder bed effective properties
+Porosity = 0.4
+450 points
+4K tolerance
+56 min 35 sec 
+Data saved
+
+-------------------------
+Trial7
+------------------------
+Initial HZ parameters from process maps
+
+P = 10,15,20,25
+v = 0.2, 0.35, 0.5 
+A=0.5
+Powder bed effective properties
+Porosity = 0.4
+450 points
+4K tolerance
+56 min 
+Data saved
+
+Average temperature increase was 25% from Trial 6 to Trial 7
+Maximum temperature 50158K
+Average melt depth increase was around 6.8% from Trial 6 to Trial 7
+Highest melt depth increase was 8 um from Trial 6 to Trial 7
+
+-------------------------
+Trial8
+------------------------
+Initial HZ parameters from process maps
+
+P = 10,15,20,25
+v = 0.2, 0.35, 0.5 
+A=0.6
+Powder bed effective properties
+Porosity = 0.4
+450 points
+4K tolerance
+1 hour 3 min
+Data saved
+
+Average temperature increase was 19% from Trial 7 to Trial 8
+Maximum temperature 60130K
+Average melt depth increase was around 8% from Trial 7 to Trial 8
+Highest melt depth increase was 6.3 um from Trial 7 to Trial 8
+
+-----------------------------------
+Trial9
+-----------------------------------
+P = 5, 10, 15, 20, 25
+v = 0.30, 0.35, 0.40, 0.45, 0.5
+A = 0.5
+Powder bed effective properties
+Porosity = 0.4
+450 points
+4K tolerance
+2 hours 2 minutes
+Data saved
+
+-------------------------------------
+Trial10
+-------------------------------------
+P = 5, 10, 15, 20, 25
+v = 0.2, 0.35, 0.5, 0.65
+A = 0.5
+Powder bed effective properties
+Porosity = 0.4
+450 points
+4K tolerance
+2 hours 
+Data saved

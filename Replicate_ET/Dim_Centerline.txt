@@ -1,0 +1,84 @@
+def thetan_width(psi,u,taulim):
+    ''' 
+    Function that returns the dimensionless temperature - operating parameter ratio along the geometry's 
+    dimensionless width by performing quadrature on the E-T model's integral.
+    Also, it returns the absolute error of the quadrature.
+    
+    Inputs
+        > xi : Dimensionless length 
+        > psi : Dimensionless width (array)
+        > zi : Dimensionless depth  
+        > u: Distribution parameter, ( travel speed * distribution parameter- radius ) / ( 2 * thermal diffusivity)
+        > taulim : Dimensionless time
+    
+    Outputs
+        > thetan : Array with values of dimensionless temperature - operating parameter ratio along dimensionless width
+        > error : Array for absolute error of quadrature
+    '''
+    # Arrays for numerical integration and respective absolute error evaluation
+    integral_eval, error = numpy.zeros ( len ( psi ) ),numpy.zeros ( len ( psi ) )
+    for i, psivalue in enumerate ( psi ) : #For each value of dimensionless width,evaluate integral and store value
+        integral_eval[i],error[i] = quad(integrand,0,taulim,args = ( 0, psivalue, 0, u), epsabs = 1e-10, epsrel=1e-10)
+        #integral_eval[i],error[i]=fixed_quad(integrand,0,taulim,args=(xi,psivalue,zi,u),n=8)
+    thetan = integral_eval / numpy.sqrt (2*numpy.pi) #Values of non-dimensional temperature/distribution parameter
+    return thetan, error
+
+def thetan_depth ( xi, psi, zi, u, taulim ):
+    '''
+    Function that returns the dimensionless temperature - operating parameter ratio along the geometry's 
+    dimensionless depth by performing quadrature on the E-T model's integral. 
+    Also, it returns the absolute error of the quadrature.
+    
+    Inputs
+        > xi : Dimensionless length 
+        > psi : Dimensionless width 
+        > zi : Dimensionless depth  (array)
+        > u : Distribution parameter, ( travel speed * distribution parameter- radius ) / ( 2 * thermal diffusivity)
+        > taulim : Dimensionless time
+        
+    Outputs
+        > thetan : Array with ratio of dimensionless temperature - operating parameter ratio values along depth
+        > error : Array for absolute error of quadrature 
+    '''
+    # Arrays for numerical integration and respective absolute error evaluation
+    integral_eval, error = numpy.zeros ( len ( zi ) ) , numpy.zeros ( len ( zi ) )
+    for i, zivalue in enumerate (zi): #For each value of dimensionless depth,evaluate integral and store value 
+        integral_eval[i], error[i] = quad ( integrand, 0, taulim, args = (0,0,zivalue,u), epsabs=1e-10, epsrel=1e-10)
+        #integral_eval[i],error[i]=fixed_quad(integrand,0,taulim,args=(xi,psi,zivalue,u),n=8) 
+    thetan = integral_eval / numpy.sqrt (2 * numpy.pi ) #Values of non-dimensional temperature/distribution parameter
+    return thetan, error
+
+
+
+t = 1e-3
+tau_LB = ((speed**2)*t)/(2*a_bed)
+
+z_depth = numpy.linspace (0, 100e-06 , 1000) # In meters
+zi_depth_LB = ( speed * z_depth ) / ( 2 * a_bed )
+
+y_width = numpy.linspace (0, 100e-06, 1000) # In meters
+psi_width_LB = ( speed * y_width ) / ( 2 * a_bed )
+
+u_LB = ( speed * radius ) / ( 2 * a_bed ) # Distribution parameter
+n_LB = ( Absor * power * speed ) / ( 4 * numpy.pi * rho_bed * C_solid * ( a_bed ** 2 ) ) # Operating parameter
+
+# Results of θ / n for my simulations
+Distr_width_LB, Error_width_LB = thetan_width(xi_width_LB,psi_width_LB,zi_width_LB,u_LB,tau_LB)
+Distr_depth_LB, Error_depth_LB = thetan_depth(xi_depth_LB,psi_depth_LB,zi_depth_LB,u_LB,tau_LB)
+
+# Express results to their units
+T_width_LB = ( Distr_width_LB * n_LB ) + Tambient
+T_depth_LB = ( Distr_depth_LB * n_LB ) + Tambient
+pyplot. figure (figsize = (12,5)) ; font = 20
+z_depth = z_depth * (10**6) ; y_width = y_width * (10**6)
+pyplot.plot (z_depth, T_depth_LB, label = ' T(z)@'+ ' ' + ' w,y= 0')
+pyplot.plot (y_width, T_width_LB, label = ' T(y)@'+ ' ' + ' w,z= 0')
+pyplot.axhline(y=Tmelt, color='black', linestyle='--',label = 'Melting T')  
+title = 'A=' + str(Absor) + ', P=' + str(power) + ' W,  v='+ str (speed)+ ' m/s, ' + 't='+ str (t) +' s, ' + 'u=' + str (
+    round(u_LB, 2))
+pyplot.title (title, fontsize = font); pyplot.legend(loc = 'best', fontsize = font); 
+pyplot.ylabel ('$Temperature \ (K)$', fontsize = font); pyplot.xlabel ('$ Depth \ (z), \ Width \ (y) \ (um)$', fontsize = font);
+pyplot.yticks(fontsize=font, rotation=0) ; pyplot.xticks(fontsize=font, rotation=0)
+pyplot.xlim(0);
+#pyplot.ticklabel_format(axis='x', style='sci', scilimits=(-2,0))
+print ('Maximum quad errors',numpy.max(Error_depth_LB), numpy.max(Error_width_LB) )
